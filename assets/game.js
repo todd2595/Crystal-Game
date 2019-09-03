@@ -1,70 +1,100 @@
-var losses;
-var wins;
+var flower = {
+    blue:
+    {
+        name: "blue",
+        value: 0
+    },
+    green:
+    {
+        name: "green",
+        value: 0
+    },
+    pink:
+    {
+        name: "pink",
+        value: 0
+    },
+    yellow:
+    {
+        name: "yellow",
+        value: 0
+    }
+};
 var score = 0;
-var clickValue = Math.floor(Math.random() * 12) + 1;
-var clickValue2 = Math.floor(Math.random() * 13) + 1;
-var clickValue3 = Math.floor(Math.random() * 14) + 1;
-var clickValue4 = Math.floor(Math.random() * 11) + 1;
-var goal = Math.floor(Math.random() * 112) + 19;
-reset();
-$(".wins").text("Wins " + wins);
-$(".losses").text("losses " + losses)
+var targetScore = 0;
+var losses = 0;
+var wins = 0;
 
-function reset() {
+var getRandom = function (min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+};
+var reset = function () {
+
+    // Reset the Current Score
     score = 0;
-    goal = Math.floor(Math.random() * 112) + 19;
-    //var clickValue = Math.floor(Math.random()*12) + 1;
 
-    $(".goal").text("the score you need is " + goal);
-}
+    // Set a new Target Score (between 19 and 120)
+    targetScore = getRandom(19, 120);
 
+    // Set different values for each of the flowers (between 1 and 12)
+    flower.blue.value = getRandom(1, 12);
+    flower.pink.value = getRandom(1, 12);
+    flower.green.value = getRandom(1, 12);
+    flower.yellow.value = getRandom(1, 12);
 
-$(".redRock").on("click", function () {
-    $(".redRock").attr("click-value", clickValue);
-    //var crystalValue = ($(this.attr("click-value")));
-    //clickValue = parseInt(clickValue);
-    score += clickValue;
-    alert("Your score is " + score)
-    win();
-});
-$(".redRock2").on("click", function () {
-    $(".redRock").attr("click-value", clickValue2);
-    //var crystalValue = ($(this.attr("click-value")));
-    //clickValue = parseInt(clickValue);
-    score += clickValue2;
-    alert("Your score is " + score)
-    win();
-});
-$(".redRock3").on("click", function () {
-    $(".redRock").attr("click-value", clickValue3);
-    //var crystalValue = ($(this.attr("click-value")));
-    //clickValue = parseInt(clickValue);
-    score += clickValue3;
-    alert("Your score is " + score)
-    win();
-});
-$(".redRock4").on("click", function () {
-    $(".redRock").attr("click-value", clickValue4);
-    //var crystalValue = ($(this.attr("click-value")));
-    //clickValue = parseInt(clickValue);
-    score += clickValue4;
-    alert("Your score is " + score)
-    win();
-});
+    // Change the HTML to reflect all of these changes
+    $("#score").text(score);
+    $("#targetScore").text(targetScore);
 
 
+    // Testing Console
+    console.log("-----------------------------------");
+    console.log("Target Score: " + targetScore);
+    console.log("Blue: " + flower.blue.value + " | Green: " + flower.green.value + " | pink: " + flower.pink.value +
+        " | Yellow: " + flower.yellow.value);
+    console.log("-----------------------------------");
+};
 
-//keeping score
-//if (goal > score){
-function win() {
-    if (goal === score) {
-        alert("You WIN!")
-        ++wins;
-        reset();
-    }
-    if (goal <= score) {
+var checkWin = function () {
+
+    if (score > targetScore) {
         alert("You LOSE!")
-        reset();
         ++losses;
+        $("#losses").text(losses);
+        reset();
     }
+    else if (score === targetScore) {
+        alert("You Win!")
+
+        ++wins;
+        $("#wins").text(wins);
+        reset();
+    }
+
 }
+
+var keepingScore = function (clickedFlower) {
+    score += clickedFlower.value
+    $("#score").text(score);
+
+    // Call the checkWin Function
+    checkWin();
+}
+
+
+reset();
+$("#blue").click(function () {
+    keepingScore(flower.blue);
+});
+
+$("#pink").click(function () {
+    keepingScore(flower.pink);
+});
+
+$("#green").click(function () {
+    keepingScore(flower.green);
+});
+
+$("#yellow").click(function () {
+    keepingScore(flower.yellow);
+});

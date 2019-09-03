@@ -1,40 +1,72 @@
 <!DOCTYPE html>
 <html>
-    <head> 
-        <title>Clicking Crystal Game</title>
-        <style type="text/css">
-            #diamond {
-                width: 300px;
-                height: 300px;
-            }
-        </style>
 
+<head>
+    <title>Flower Clicking Game</title>
+    <style type="text/css">
+        .image {
+            width: 200px;
+            height: 200px;
+        }
+    </style>
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" />
 
-    </head>
-    <body>
-        <h1>Click The Crystals</h1>
-        <p class="goal">Goal: </p>
-        <div id="crystals">
-            <img class="redRock" id = "diamond" src="assets/images/redRockk.jpg" alt="Crystal">
-            <img class="redRock2" id = "diamond" src="assets/images/redRockk.jpg" alt="Crystal">
-            <img class="redRock3" id ="diamond" src="assets/images/redRockk.jpg" alt="Crystal">
-            <img class="redRock4" id = "diamond" src="assets/images/redRockk.jpg" alt="Crystal">
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 id="title">Click The Flowers!</h1>
+                <div id="rules area">
+                    <h3>Each flower has a randomly set value. Get to the target number
+                        as quickly as possible. Watch out! You will lose if you go over the target number
+                    </h3>
+                </div>
+            </div>
         </div>
-        <div class="score"></div>
-        <div class="losses"></div>
-        <div class="wins"></div>
-    
+        <div class="card text-center">
+            <div class="row">
+                <div class="col">Goal:<p id="targetScore"></p>
+                </div>
+                <div class="col">Score:<div id="score"></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">Losses:
+                    <div id="losses"></div>
+                </div>
+                <div class="col">Wins:
+                    <div id="wins"></div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <img class="image" id="blue" class="rounded" src="assets/images/blue.jpg" alt="flower1">
+                </div>
+                <div class="col">
+                    <img class="image" id="green" class="rounded" src="assets/images/green.png" alt="flower2">
+                </div>
+                <div class="col">
+                    <img class="image" id="pink" class="rounded" src="assets/images/pink.jpg" alt="flower3">
+                </div>
+                <div class="col">
+                    <img class="image" id="yellow" class="rounded" src="assets/images/yellow.png" alt="flower4">
+                </div>
+                <div class="text-center">
+                </div>
+            </div>
+        </div>
 
 
+    </div>
 
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="assets/game.js"></script>
+    <script src="http://chancejs.com/chance.min.js"></script>
+</body>
 
-
-
-
-
-
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <script type="text/javascript" src="assets/game.js"></script>
-        <script src="http://chancejs.com/chance.min.js"></script>
-    </body>
 </html>
